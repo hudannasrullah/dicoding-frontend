@@ -1,51 +1,47 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>Event</title>
+  <head>
+    <title>Custom Event</title>
 
     <style>
-        .buttons {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 2px solid black;
-            padding: 15px;
-        }
+      .buttons {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid black;
+        padding: 15px;
+      }
 
-        .button {
-            margin: 8px;
-            height: 40px;
-        }
+      .button {
+        margin: 8px;
+        height: 40px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="buttons" align="center">
-        <h3 id="caption">Silakan tekan salah satu tombol dibawah...</h3>
-        <button class="button" id="tombol">Tombol Custom Event</button>
+      <h3 id="caption">Silakan tekan salah satu tombol dibawah...</h3>
+      <button class="button" id="tombol">Tombol Custom Event</button>
     </div>
 
     <script>
+      const changeCaption = new Event("changeCaption");
 
-        const changeCaption = new Event('changeCaption');
-
-        window.addEventListener('load', function () {
-            const tombol = document.getElementById('tombol');
-            tombol.addEventListener('changeCaption', customEventHandler);
-            tombol.addEventListener('click', function () {
-                tombol.dispatchEvent(changeCaption);
-            });
+      window.addEventListener("load", function () {
+        const tombol = document.getElementById("tombol");
+        tombol.addEventListener("changeCaption", customEventHandler);
+        tombol.addEventListener("click", function () {
+          tombol.dispatchEvent(changeCaption);
         });
+      });
 
-        function customEventHandler(ev) {
-            console.log('Event ' + ev.type + ' telah dijalankan');
-            const caption = document.getElementById('caption');
-            caption.innerText = 'Anda telah membangkitkan custom event';
-        }
-
+      function customEventHandler(ev) {
+        console.log("Event " + ev.type + " telah dijalankan");
+        const caption = document.getElementById("caption");
+        caption.innerText = "Anda telah membangkitkan custom event";
+      }
     </script>
-</body>
-
+  </body>
 </html>
